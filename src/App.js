@@ -1,30 +1,23 @@
 import React, { Component } from "react";
-import FriendCard from "./components/FriendCard";
+import EmployeeCard from "./components/EmployeeCard";
 import Wrapper from "./components/Wrapper";
 import Title from "./components/Title";
-import friends from "./friends.json";
+import employees from "./employees.json";
 import SearchForm from "./components/SearchForm";
 
 class App extends Component {
-  // Setting this.state.friends to the friends json array
+  // Setting this.state.employees to the employees json array
   // filtered adds a new state to the state objects, a filtering on the previous state.
   state = {
-    friends,
-    filtered: friends
-  };
-
-  removeFriend = id => {
-    // Filter this.state.friends for friends with an id not equal to the id being removed
-    const friends = this.state.friends.filter(friend => friend.id !== id);
-    // Set this.state.friends equal to the new friends array
-    this.setState({ friends });
+    employees,
+    filtered: employees
   };
 
   handleSearch = (event) => {
     // set user query to lowercase for ease of comparison
     const query = event.target.value.toLowerCase();
     // creates a variable to stored the new filtered result
-    const filtered = this.state.friends.filter(friend => {
+    const filtered = this.state.employees.filter(friend => {
       // takes the available friend names and set them to lowercase
       const lowerName = friend.name.toLowerCase();
       // returns to the filtered variable the queried name set to lowercase filtering as one types.
@@ -35,7 +28,7 @@ class App extends Component {
   }
 
   handleSort = () => {
-    // compares filtered friends against each other to sort them alphabetically
+    // compares filtered employees against each other to sort them alphabetically
     const sorted = this.state.filtered.sort((friendA, friendB) => {
       if (friendA.name.toLowerCase() < friendB.name.toLowerCase()) {
         return -1;
@@ -50,17 +43,16 @@ class App extends Component {
   }
 
 
-  // Map over this.state.friends and render a FriendCard component for each friend object
+  // Map over this.state.employees and render a EmployeeCard component for each friend object
   render() {
     return (
       <Wrapper>
-        <Title>Friends List</Title>
+        <Title>Eastman Consulting Employees List</Title>
         <SearchForm
           handleSearch={this.handleSearch}
           handleSort={this.handleSort}></SearchForm>
         {this.state.filtered.map(friend => (
-          <FriendCard
-            removeFriend={this.removeFriend}
+          <EmployeeCard
             id={friend.id}
             key={friend.id}
             name={friend.name}

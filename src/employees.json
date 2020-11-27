@@ -1,0 +1,13 @@
+[
+  {
+    "id": 1,
+    "gender": "female",
+    "name": "Robin Bowman",
+    "location": "5280 Washington Ave, Elko, South Carolina, 42438",
+    "email": "robin.bowman@example.com",
+    "dob": "1950-07-31",
+    "phone": "(837)-171-8033",
+    "cell": "(139)-980-4291",
+    "occupation": "Analyst"
+  }
+]
