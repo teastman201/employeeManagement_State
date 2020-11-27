@@ -7,6 +7,7 @@ import SearchForm from "./components/SearchForm";
 
 class App extends Component {
   // Setting this.state.friends to the friends json array
+  // filtered adds a new state to the state objects, a filtering on the previous state.
   state = {
     friends,
     filtered: friends
@@ -34,6 +35,7 @@ class App extends Component {
   }
 
   handleSort = () => {
+    // compares filtered friends against each other to sort them alphabetically
     const sorted = this.state.filtered.sort((friendA, friendB) => {
       if (friendA.name.toLowerCase() < friendB.name.toLowerCase()) {
         return -1;
@@ -53,7 +55,10 @@ class App extends Component {
     return (
       <Wrapper>
         <Title>Friends List</Title>
-        {this.state.friends.map(friend => (
+        <SearchForm
+          handleSearch={this.handleSearch}
+          handleSort={this.handleSort}></SearchForm>
+        {this.state.filtered.map(friend => (
           <FriendCard
             removeFriend={this.removeFriend}
             id={friend.id}
