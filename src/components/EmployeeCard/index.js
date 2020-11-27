@@ -10,6 +10,18 @@ function EmployeeCard(props) {
             <strong>Name:</strong> {props.name}
           </li>
           <li>
+            <strong>Gender:</strong> {props.gender}
+          </li>
+          <li>
+            <strong>Pronouns:</strong> {props.pronouns}
+          </li>
+          <li>
+            <strong>Email:</strong> {props.email}
+          </li>
+          <li>
+            <strong>Phone:</strong> {props.phone}
+          </li>
+          <li>
             <strong>Occupation:</strong> {props.occupation}
           </li>
           <li>

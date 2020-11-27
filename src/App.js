@@ -17,9 +17,9 @@ class App extends Component {
     // set user query to lowercase for ease of comparison
     const query = event.target.value.toLowerCase();
     // creates a variable to stored the new filtered result
-    const filtered = this.state.employees.filter(friend => {
-      // takes the available friend names and set them to lowercase
-      const lowerName = friend.name.toLowerCase();
+    const filtered = this.state.employees.filter(employee => {
+      // takes the available employee names and set them to lowercase
+      const lowerName = employee.name.toLowerCase();
       // returns to the filtered variable the queried name set to lowercase filtering as one types.
       return lowerName.includes(query);
     })
@@ -29,11 +29,11 @@ class App extends Component {
 
   handleSort = () => {
     // compares filtered employees against each other to sort them alphabetically
-    const sorted = this.state.filtered.sort((friendA, friendB) => {
-      if (friendA.name.toLowerCase() < friendB.name.toLowerCase()) {
+    const sorted = this.state.filtered.sort((employeeA, employeeB) => {
+      if (employeeA.name.toLowerCase() < employeeB.name.toLowerCase()) {
         return -1;
       }
-      if (friendA.name.toLowerCase() > friendB.name.toLowerCase()) {
+      if (employeeA.name.toLowerCase() > employeeB.name.toLowerCase()) {
         return 1;
       }
       // else statement, A must be equal to B
@@ -43,7 +43,7 @@ class App extends Component {
   }
 
 
-  // Map over this.state.employees and render a EmployeeCard component for each friend object
+  // Map over this.state.employees and render a EmployeeCard component for each employee object
   render() {
     return (
       <Wrapper>
@@ -51,13 +51,17 @@ class App extends Component {
         <SearchForm
           handleSearch={this.handleSearch}
           handleSort={this.handleSort}></SearchForm>
-        {this.state.filtered.map(friend => (
+        {this.state.filtered.map(employee => (
           <EmployeeCard
-            id={friend.id}
-            key={friend.id}
-            name={friend.name}
-            occupation={friend.occupation}
-            location={friend.location}
+            id={employee.id}
+            key={employee.id}
+            name={employee.name}
+            gender={employee.gender}
+            pronouns={employee.pronouns}
+            email={employee.email}
+            phone={employee.phone}
+            occupation={employee.occupation}
+            location={employee.location}
           />
         ))}
       </Wrapper>
