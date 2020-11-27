@@ -19,20 +19,14 @@ class App extends Component {
     this.setState({ friends });
   };
 
-  handleSort = () => {
-    const sorted = this.state.filtered.sort((friendA, friendB) => {
-      if (friendA.name.toLowerCase() < friendB.name.toLowerCase()) {
-        return -1;
-      }
-      if (friendA.name.toLowerCase() > friendB.name.toLowerCase()) {
-        return 1;
-      }
-      // else statement, A must be equal to B
-      return 0;
+  handleSearch = (event) => {
+    const query = event.target.value.toLowerCase();
+    const filtered = this.state.friends.filter(friend => {
+      const lowerName = friend.name.toLowerCase();
+      return lowerName.includes(query);
     })
-    this.setState({ filtered: sorted });
+    this.setState({ filtered });
   }
-
 
   // Map over this.state.friends and render a FriendCard component for each friend object
   render() {
