@@ -20,13 +20,33 @@ class App extends Component {
   };
 
   handleSearch = (event) => {
+    // set user query to lowercase for ease of comparison
     const query = event.target.value.toLowerCase();
+    // creates a variable to stored the new filtered result
     const filtered = this.state.friends.filter(friend => {
+      // takes the available friend names and set them to lowercase
       const lowerName = friend.name.toLowerCase();
+      // returns to the filtered variable the queried name set to lowercase filtering as one types.
       return lowerName.includes(query);
     })
+    // updates the page with the new filtered objects
     this.setState({ filtered });
   }
+
+  handleSort = () => {
+    const sorted = this.state.filtered.sort((friendA, friendB) => {
+      if (friendA.name.toLowerCase() < friendB.name.toLowerCase()) {
+        return -1;
+      }
+      if (friendA.name.toLowerCase() > friendB.name.toLowerCase()) {
+        return 1;
+      }
+      // else statement, A must be equal to B
+      return 0;
+    })
+    this.setState({ filtered: sorted });
+  }
+
 
   // Map over this.state.friends and render a FriendCard component for each friend object
   render() {
