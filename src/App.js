@@ -3,11 +3,13 @@ import FriendCard from "./components/FriendCard";
 import Wrapper from "./components/Wrapper";
 import Title from "./components/Title";
 import friends from "./friends.json";
+import SearchForm from "./components/SearchForm";
 
 class App extends Component {
   // Setting this.state.friends to the friends json array
   state = {
-    friends
+    friends,
+    filtered: friends
   };
 
   removeFriend = id => {
@@ -16,6 +18,21 @@ class App extends Component {
     // Set this.state.friends equal to the new friends array
     this.setState({ friends });
   };
+
+  handleSort = () => {
+    const sorted = this.state.filtered.sort((friendA, friendB) => {
+      if (friendA.name.toLowerCase() < friendB.name.toLowerCase()) {
+        return -1;
+      }
+      if (friendA.name.toLowerCase() > friendB.name.toLowerCase()) {
+        return 1;
+      }
+      // else statement, A must be equal to B
+      return 0;
+    })
+    this.setState({ filtered: sorted });
+  }
+
 
   // Map over this.state.friends and render a FriendCard component for each friend object
   render() {
